@@ -8,7 +8,7 @@ def canUnlockAll(boxes):
     Each box may contain keys to other boxes. Box 0 is unlocked by default.
 
     Args:
-        boxes (list of list): A list where boxes[i] contains the keys found in box i.
+        boxes (list of list): boxes[i] contains the keys found in box i.
 
     Returns:
         bool: True if all boxes can be opened, False otherwise.
