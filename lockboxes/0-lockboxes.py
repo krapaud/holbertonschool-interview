@@ -1,4 +1,4 @@
-#!/usr/env/python 3
+#!/usr/bin/python3
 def canUnlockAll(boxes):
     elements = [0]
     keys = set()
