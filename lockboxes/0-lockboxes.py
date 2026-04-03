@@ -18,11 +18,10 @@ def canUnlockAll(boxes):
 
     while elements:
         element = elements.pop()
-        print(element)
         if element in keys:
-            continue;
+            continue
         if element not in range(len(boxes)):
-            continue;
+            continue
         elements.extend(boxes[element])
         keys.add(element)
     return len(keys) == len(boxes)
