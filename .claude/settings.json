@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/krapaud/bin)",
+      "Bash(cp betty-style.pl /Users/krapaud/bin/betty-style)",
+      "Bash(cp betty-doc.pl /Users/krapaud/bin/betty-doc)",
+      "Bash(cp betty.sh /Users/krapaud/bin/betty)",
+      "Bash(chmod +x /Users/krapaud/bin/betty-style /Users/krapaud/bin/betty-doc /Users/krapaud/bin/betty)"
+    ]
+  }
+}
