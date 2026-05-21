@@ -29,19 +29,17 @@ static void print_grid(int grid[3][3])
  */
 static int is_stable(int grid[3][3])
 {
-    int i, j;
+	int i, j;
 
 	for (i = 0; i < 3; i++)
-    {
-        for (j = 0; j < 3; j++)
-        {
-            if (grid[i][j] > 3)
-            {
-                return 0;
-            }
-        }
-    }
-    return 1;
+	{
+		for (j = 0; j < 3; j++)
+		{
+			if (grid[i][j] > 3)
+				return (0);
+		}
+	}
+	return (1);
 }
 
 /**
@@ -50,48 +48,52 @@ static int is_stable(int grid[3][3])
  */
 static void topple(int grid[3][3])
 {
-    int tmp[3][3] = {0};  /* grille des modifications */
-    int i, j;
-
-    for (i = 0; i < 3; i++)
-    {
-        for (j = 0; j < 3; j++)
-        {
-            if (grid[i][j] > 3)
-            {
-                tmp[i][j] -= 4;         /* la case perd 4 */
-                /* ses voisins gagnent 1, si ils existent */
-                if (i > 0) tmp[i-1][j] += 1;  /* haut */
-                if (i < 2) tmp[i+1][j] += 1;  /* bas */
-                if (j > 0) tmp[i][j-1] += 1;  /* gauche */
-                if (j < 2) tmp[i][j+1] += 1;  /* droite */
-            }
-        }
-    }
-    for (i = 0; i < 3; i++)
-    {
-        for (j = 0; j < 3; j++)
-        {
-            grid[i][j] += tmp[i][j];
-        }
-    }
-}
-
-void sandpiles_sum(int grid1[3][3], int grid2[3][3])
-{
-    int i ,j;
+	int tmp[3][3] = {0};
+	int i, j;
 
 	for (i = 0; i < 3; i++)
-    {
-        for (j = 0; j < 3; j++)
-        {
-            grid1[i][j] += grid2[i][j];
-        }
-    }
-    while (!is_stable(grid1))
-    {
-        printf("=\n");
-        print_grid(grid1);
-        topple(grid1);
-    }
+	{
+		for (j = 0; j < 3; j++)
+		{
+			if (grid[i][j] > 3)
+			{
+				tmp[i][j] -= 4;
+				if (i > 0)
+					tmp[i - 1][j] += 1;
+				if (i < 2)
+					tmp[i + 1][j] += 1;
+				if (j > 0)
+					tmp[i][j - 1] += 1;
+				if (j < 2)
+					tmp[i][j + 1] += 1;
+			}
+		}
+	}
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+			grid[i][j] += tmp[i][j];
+	}
+}
+
+/**
+ * sandpiles_sum - Computes the sum of two sandpiles
+ * @grid1: First 3x3 grid (modified in place)
+ * @grid2: Second 3x3 grid
+ */
+void sandpiles_sum(int grid1[3][3], int grid2[3][3])
+{
+	int i, j;
+
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+			grid1[i][j] += grid2[i][j];
+	}
+	while (!is_stable(grid1))
+	{
+		printf("=\n");
+		print_grid(grid1);
+		topple(grid1);
+	}
 }
