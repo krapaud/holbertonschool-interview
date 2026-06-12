@@ -11,8 +11,8 @@ int is_palindrome(listint_t **head)
 {
 	size_t len = 0;
 	listint_t *current = *head;
-	int *tab;
 	size_t i = 0;
+	int tab[4096];
 
 	/* si la liste est vide c'est un palindrome */
 	if (*head == NULL)
@@ -26,11 +26,6 @@ int is_palindrome(listint_t **head)
 		len++;
 		current = current->next;
 	}
-
-	/* j'alloue un tableau de la bonne taille pour stocker les valeurs */
-	tab = malloc(sizeof(int) * len);
-	if (tab == NULL)
-		return (0);
 
 	/* je copie les valeurs de la liste dans le tableau */
 	current = *head;
@@ -46,10 +41,8 @@ int is_palindrome(listint_t **head)
 	{
 		if (tab[i] != tab[len - 1 - i])
 		{
-			free(tab);
 			return (0);
 		}
 	}
-	free(tab);
 	return (1);
 }
