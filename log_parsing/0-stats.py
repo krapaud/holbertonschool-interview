@@ -14,22 +14,23 @@ def print_stats():
         print("{}: {}".format(code, status_codes[code]))
 
 
-try:
-    for line in sys.stdin:
-        parts = line.split()
-        total_size += int(parts[-1])
-        line_count += 1
-        status = parts[-2]
-        valid = [200, 301, 400, 401, 403, 404, 405, 500]
+if __name__ == "__main__":
+    try:
+        for line in sys.stdin:
+            parts = line.split()
+            total_size += int(parts[-1])
+            line_count += 1
+            status = parts[-2]
+            valid = [200, 301, 400, 401, 403, 404, 405, 500]
 
-        if status.isdigit() and int(status) in valid:
-            code = int(status)
-            if code in status_codes:
-                status_codes[code] += 1
-            else:
-                status_codes[code] = 1
+            if status.isdigit() and int(status) in valid:
+                code = int(status)
+                if code in status_codes:
+                    status_codes[code] += 1
+                else:
+                    status_codes[code] = 1
 
-        if line_count % 10 == 0:
-            print_stats()
-except KeyboardInterrupt:
-    print_stats()
+            if line_count % 10 == 0:
+                print_stats()
+    except KeyboardInterrupt:
+        print_stats()
