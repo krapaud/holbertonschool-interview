@@ -1,14 +1,18 @@
 #!/usr/bin/python3
+"""Module that reads stdin line by line and computes log metrics"""
 import sys
 
 total_size = 0
 status_codes = {}
 line_count = 0
 
+
 def print_stats():
+    """Print total file size and number of lines per status code"""
     print("File size: {}".format(total_size))
     for code in sorted(status_codes):
         print("{}: {}".format(code, status_codes[code]))
+
 
 try:
     for line in sys.stdin:
@@ -25,8 +29,7 @@ try:
             else:
                 status_codes[code] = 1
 
-        if line_count % 10 == 0: 
+        if line_count % 10 == 0:
             print_stats()
 except KeyboardInterrupt:
     print_stats()
-
