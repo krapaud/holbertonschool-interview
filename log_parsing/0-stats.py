@@ -32,5 +32,6 @@ if __name__ == "__main__":
 
             if line_count % 10 == 0:
                 print_stats()
+        print_stats()
     except KeyboardInterrupt:
         print_stats()
