@@ -56,39 +56,43 @@ static void slide_right(int *line, size_t size)
 	size_t i, pos;
 
 	/* compression 1 : pousser les non-zeros vers la droite */
-	pos = size - 1;
-	for (i = size - 1; i < size; i--)
+	pos = size;
+	for (i = size; i > 0; i--)
 	{
-		if (line[i] != 0)
+		if (line[i - 1] != 0)
 		{
-			line[pos] = line[i];
-			if (pos != i)
-				line[i] = 0;
 			pos--;
+			line[pos] = line[i - 1];
+			if (pos != i - 1)
+				line[i - 1] = 0;
 		}
 	}
+	for (i = 0; i < pos; i++)
+		line[i] = 0;
 	/* fusion : combiner les identiques, de droite a gauche */
-	for (i = size - 1; i > 0; i--)
+	for (i = size; i > 1; i--)
 	{
-		if (line[i] != 0 && line[i] == line[i - 1])
+		if (line[i - 1] != 0 && line[i - 1] == line[i - 2])
 		{
-			line[i] *= 2;
-			line[i - 1] = 0;
+			line[i - 1] *= 2;
+			line[i - 2] = 0;
 			i--;
 		}
 	}
 	/* compression 2 : remettre les zeros a gauche */
-	pos = size - 1;
-	for (i = size - 1; i < size; i--)
+	pos = size;
+	for (i = size; i > 0; i--)
 	{
-		if (line[i] != 0)
+		if (line[i - 1] != 0)
 		{
-			line[pos] = line[i];
-			if (pos != i)
-				line[i] = 0;
 			pos--;
+			line[pos] = line[i - 1];
+			if (pos != i - 1)
+				line[i - 1] = 0;
 		}
 	}
+	for (i = 0; i < pos; i++)
+		line[i] = 0;
 }
 
 /**
