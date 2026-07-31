@@ -5,7 +5,10 @@
       "Bash(cp betty-style.pl /Users/krapaud/bin/betty-style)",
       "Bash(cp betty-doc.pl /Users/krapaud/bin/betty-doc)",
       "Bash(cp betty.sh /Users/krapaud/bin/betty)",
-      "Bash(chmod +x /Users/krapaud/bin/betty-style /Users/krapaud/bin/betty-doc /Users/krapaud/bin/betty)"
+      "Bash(chmod +x /Users/krapaud/bin/betty-style /Users/krapaud/bin/betty-doc /Users/krapaud/bin/betty)",
+      "Bash(chmod +x /Users/krapaud/Documents/Holberton_School/holbertonschool-interview/nqueens/0-nqueens.py)",
+      "Bash(python3 0-nqueens.py 4)",
+      "Bash(python3 0-nqueens.py 6)"
     ]
   }
 }
