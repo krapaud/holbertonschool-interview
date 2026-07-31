@@ -23,7 +23,7 @@ gcc -Wall -Wextra -Werror -pedantic -o 0-menger 0-menger.c 0-main.c -lm
 
 ## Examples
 
-```
+```bash
 $ ./0-menger 0
 #
 $ ./0-menger 1
