@@ -3,7 +3,7 @@
 #include "search_algos.h"
 
 /**
- * print_search - Print the portion of the array being searched
+ * print_search - J'affiche la partie du tableau que je recherche
  * @array: Array to print
  * @low: First index to print
  * @high: Last index to print
@@ -23,13 +23,13 @@ static void print_search(int *array, size_t low, size_t high)
 }
 
 /**
- * advanced_search - Recursively find the first occurrence of a value
+ * advanced_search - Je cherche récursivement la première occurrence
  * @array: Sorted array to search
  * @low: First index of the current range
  * @high: Last index of the current range
  * @value: Value to find
  *
- * Return: Index of the first occurrence, or -1
+ * Return: L'indice de la première occurrence, ou -1
  */
 static int advanced_search(int *array, size_t low, size_t high, int value)
 {
@@ -48,17 +48,21 @@ static int advanced_search(int *array, size_t low, size_t high, int value)
 		return (advanced_search(array, low, middle, value));
 	}
 	if (array[middle] > value)
-		return (advanced_search(array, low, middle - 1, value));
+	{
+		if (middle == low)
+			return (-1);
+		return (advanced_search(array, low, middle, value));
+	}
 	return (advanced_search(array, middle + 1, high, value));
 }
 
 /**
- * advanced_binary - Search for the first occurrence of a value
+ * advanced_binary - Je cherche la première occurrence d'une valeur
  * @array: Sorted array to search
  * @size: Number of elements in the array
  * @value: Value to find
  *
- * Return: Index of the first occurrence, or -1
+ * Return: L'indice de la première occurrence, ou -1
  */
 int advanced_binary(int *array, size_t size, int value)
 {

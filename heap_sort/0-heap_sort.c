@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * sift_down - Restore the max-heap property below a node
+ * sift_down - Je rétablis la propriété du tas maximal sous un nœud
  * @array: Array to sort
  * @size: Number of elements in the array
  * @root: Root of the subtree to sift down
@@ -36,7 +36,7 @@ static void sift_down(int *array, size_t size, size_t root, size_t end)
 }
 
 /**
- * heap_sort - Sort an array of integers in ascending order using heap sort
+ * heap_sort - Je trie un tableau d'entiers avec le tri par tas
  * @array: Array to sort
  * @size: Number of elements in the array
  */

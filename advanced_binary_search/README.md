@@ -1,8 +1,8 @@
 # Advanced Binary Search — recherche binaire avancée
 
-## Objectif
+## Ce que je dois faire
 
-L’objectif est de rechercher une valeur dans un tableau d’entiers trié dans l’ordre croissant et de retourner **l’indice de sa première occurrence**.
+Dans cette tâche, je dois rechercher une valeur dans un tableau d’entiers trié et retourner **l’indice de sa première occurrence**.
 
 La fonction demandée est :
 
@@ -12,9 +12,9 @@ int advanced_binary(int *array, size_t size, int value);
 
 Elle retourne l’indice trouvé ou `-1` si la valeur n’existe pas ou si le pointeur `array` vaut `NULL`.
 
-## Rappel de la recherche binaire
+## Comment je fais ma recherche
 
-La recherche binaire ne parcourt pas le tableau élément par élément. Elle examine l’élément du milieu :
+Je ne parcours pas le tableau élément par élément. J’examine l’élément du milieu :
 
 - si cet élément est la valeur recherchée, une occurrence a été trouvée ;
 - si l’élément du milieu est trop petit, on continue dans la moitié droite ;
@@ -22,14 +22,14 @@ La recherche binaire ne parcourt pas le tableau élément par élément. Elle ex
 
 Le tableau doit obligatoirement être trié pour que cette méthode fonctionne.
 
-## Trouver la première occurrence
+## Comment je trouve la première occurrence
 
-Trouver une occurrence ne suffit pas lorsque la valeur apparaît plusieurs fois. Lorsqu’une valeur est trouvée au milieu, on vérifie s’il existe encore une occurrence à gauche.
+Trouver une occurrence ne suffit pas lorsque la valeur apparaît plusieurs fois. Quand je trouve la valeur au milieu, je vérifie s’il existe encore une occurrence à gauche.
 
 - S’il n’y en a pas, l’indice courant est le premier indice recherché.
 - Sinon, on recommence la recherche dans la partie gauche.
 
-La fonction auxiliaire utilise la récursion : chaque appel travaille sur une sous-partie plus petite du tableau.
+Ma fonction auxiliaire utilise la récursion : chaque appel travaille sur une sous-partie plus petite du tableau.
 
 ## Affichage demandé
 

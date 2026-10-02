@@ -3,7 +3,7 @@
 #include "sort.h"
 
 /**
- * print_array - Print an array of integers
+ * print_array - J'affiche un tableau d'entiers
  * @array: Array to print
  * @size: Number of elements in the array
  */
