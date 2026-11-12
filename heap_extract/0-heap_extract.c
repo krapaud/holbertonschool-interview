@@ -21,7 +21,8 @@ static size_t heap_size(const heap_t *node)
  */
 static void sift_down(heap_t *node)
 {
-	heap_t *largest, *temporary;
+	heap_t *largest;
+	int temporary_value;
 
 	while (node != NULL && node->left != NULL)
 	{
@@ -31,9 +32,9 @@ static void sift_down(heap_t *node)
 		if (node->n >= largest->n)
 			return;
 
-		temporary = node;
+		temporary_value = node->n;
 		node->n = largest->n;
-		largest->n = temporary->n;
+		largest->n = temporary_value;
 		node = largest;
 	}
 }
