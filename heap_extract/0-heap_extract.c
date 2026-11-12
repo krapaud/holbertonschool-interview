@@ -40,47 +40,44 @@ static void sift_down(heap_t *node)
 }
 
 /**
- * heap_extract - J’extrais la valeur maximale du tas.
- * @root: Double pointeur vers la racine du tas.
+ * get_last_node - Je récupère le dernier nœud en ordre de niveau.
+ * @root: Racine du tas.
+ * @count: Nombre de nœuds dans le tas.
  *
- * Return: Valeur extraite, ou 0 si le tas est vide ou invalide.
+ * Return: Dernier nœud du tas, ou NULL s’il est introuvable.
  */
-int heap_extract(heap_t **root)
+static heap_t *get_last_node(heap_t *root, size_t count)
 {
-	heap_t *old_root, *last, *parent;
-	heap_t *old_left, *old_right;
-	size_t count, path, mask;
-	int value;
+	size_t path, mask;
 
-	if (root == NULL || *root == NULL)
-		return (0);
-
-	old_root = *root;
-	value = old_root->n;
-	count = heap_size(old_root);
-	if (count == 1)
-	{
-		free(old_root);
-		*root = NULL;
-		return (value);
-	}
-
-	/* Je retrouve le dernier nœud avec son chemin d’index niveau par niveau. */
 	path = count;
 	mask = 1;
 	while (mask <= path / 2)
 		mask <<= 1;
 	mask >>= 1;
-	last = old_root;
-	while (mask > 0 && last != NULL)
+	while (mask > 0 && root != NULL)
 	{
-		last = (path & mask) ? last->right : last->left;
+		root = (path & mask) ? root->right : root->left;
 		mask >>= 1;
 	}
-	if (last == NULL || last->parent == NULL)
-		return (0);
+	return (root);
+}
 
+/**
+ * install_last_as_root - Je remplace la racine par le dernier nœud.
+ * @root: Adresse de la racine du tas.
+ * @last: Dernier nœud en ordre de niveau.
+ *
+ * Return: 1 si le remplacement réussit, sinon 0.
+ */
+static int install_last_as_root(heap_t **root, heap_t *last)
+{
+	heap_t *old_root, *parent, *old_left, *old_right;
+
+	old_root = *root;
 	parent = last->parent;
+	if (parent == NULL)
+		return (0);
 	if (parent->left == last)
 		parent->left = NULL;
 	else if (parent->right == last)
@@ -101,5 +98,36 @@ int heap_extract(heap_t **root)
 	free(old_root);
 	*root = last;
 	sift_down(last);
+	return (1);
+}
+
+/**
+ * heap_extract - J’extrais la valeur maximale du tas.
+ * @root: Double pointeur vers la racine du tas.
+ *
+ * Return: Valeur extraite, ou 0 si le tas est vide ou invalide.
+ */
+int heap_extract(heap_t **root)
+{
+	heap_t *old_root, *last;
+	size_t count;
+	int value;
+
+	if (root == NULL || *root == NULL)
+		return (0);
+
+	old_root = *root;
+	value = old_root->n;
+	count = heap_size(old_root);
+	if (count == 1)
+	{
+		free(old_root);
+		*root = NULL;
+		return (value);
+	}
+
+	last = get_last_node(old_root, count);
+	if (last == NULL || !install_last_as_root(root, last))
+		return (0);
 	return (value);
 }
